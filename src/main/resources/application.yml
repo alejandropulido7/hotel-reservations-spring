@@ -1,0 +1,18 @@
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: America/Bogota
+  webflux:
+    base-path: /api/hotel
+  application:
+    name: reservations
+  r2dbc.url: ${POSTGRES_URL}
+  r2dbc.username: ${POSTGRES_USER}
+  r2dbc.password: ${POSTGRES_PASSWORD}
+server:
+  port: 8085
+  error:
+    include-message: never
+    include-binding-errors: always
+constants:
+  sql-schema: ${SCHEMA_SQL:src/main/resources/schema.sql}

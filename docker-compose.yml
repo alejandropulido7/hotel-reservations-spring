@@ -1,0 +1,27 @@
+version: '3.9'
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - 8085:8085
+    depends_on:
+      - postgres
+    environment:
+      - POSTGRES_URL=r2dbc:postgresql://postgres:5432/hotel-reservations
+      - POSTGRES_USER=hotel
+      - POSTGRES_PASSWORD=claveHotel
+      - SCHEMA_SQL=schema.sql
+  postgres:
+    image: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=claveHotel
+      - POSTGRES_USER=hotel
+      - POSTGRES_DB=hotel-reservations
+
+volumes:
+  pgdata:
